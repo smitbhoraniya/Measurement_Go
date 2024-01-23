@@ -5,26 +5,26 @@ type Length struct {
 	unit  LengthUnit
 }
 
-func (l Length) convertToTargetUnit(targetUnit LengthUnit) Length {
-	var convertToMeter float64
-	switch l.unit {
-	case METER:
-		convertToMeter = l.value
-		break
-	case KILOMETERE:
-		convertToMeter = l.value * 1000
-		break
-	}
+func NewLength(value float64, unit LengthUnit) Length {
+	return Length{value: value, unit: unit}
+}
 
-	var convertToTarget float64
-	switch targetUnit {
-	case METER:
-		convertToTarget = convertToMeter
-		break
-	case KILOMETERE:
-		convertToTarget = convertToMeter / 1000
-		break
-	}
+func (l Length) convertToTargetUnit(targetUnit LengthUnit) Length {
+	var convertToMeter float64 = l.value * l.unit.getConversionFactor()
+
+	var convertToTarget float64 = convertToMeter / targetUnit.getConversionFactor()
 
 	return Length{value: convertToTarget, unit: targetUnit}
+}
+
+func (l Length) add(other Length) Length {
+	var otherLengthInSameUnit Length = other.convertToTargetUnit(l.unit)
+
+	return Length{value: l.value + otherLengthInSameUnit.value, unit: l.unit}
+}
+
+func (l Length) subtract(other Length) Length {
+	var otherLengthInSameUnit Length = other.convertToTargetUnit(l.unit)
+
+	return Length{value: l.value - otherLengthInSameUnit.value, unit: l.unit}
 }
