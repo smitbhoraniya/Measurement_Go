@@ -1,4 +1,4 @@
-package length
+package measurement
 
 type LengthUnit string
 

@@ -1,4 +1,4 @@
-package length
+package measurement
 
 import (
 	"testing"
@@ -32,7 +32,7 @@ func TestConvertTo(t *testing.T) {
 }
 
 func TestAddLengths(t *testing.T) {
-	length1 := NewLength(1, KILOMETERE).add(Length{value: 100, unit: METER})
+	length1 := NewLength(1, KILOMETERE).add(NewLength(100, METER))
 	length2 := NewLength(1.1, KILOMETERE)
 
 	if length1 != length2 {
@@ -41,7 +41,7 @@ func TestAddLengths(t *testing.T) {
 }
 
 func TestSubtractLengths(t *testing.T) {
-	length1 := NewLength(1, KILOMETERE).subtract(Length{value: 100, unit: METER})
+	length1 := NewLength(1, KILOMETERE).subtract(NewLength(100, METER))
 	length2 := NewLength(0.9, KILOMETERE)
 
 	if length1 != length2 {

@@ -1,4 +1,4 @@
-package weight
+package measurement
 
 import (
 	"testing"
@@ -13,7 +13,7 @@ func TestCompareTwoWeights(t *testing.T) {
 	}
 }
 
-func TestConvertToTargetUnit(t *testing.T) {
+func TestConvertWeightToTargetUnit(t *testing.T) {
 	weight1 := NewWeight(1, KILOGRAM).convertToTargetUnit(GRAM)
 	weight2 := NewWeight(1000, GRAM)
 
@@ -22,7 +22,7 @@ func TestConvertToTargetUnit(t *testing.T) {
 	}
 }
 
-func TestConvertTo(t *testing.T) {
+func TestConvertWeightTotragetUnit(t *testing.T) {
 	weight1 := NewWeight(1, KILOGRAM).convertToTargetUnit(GRAM)
 	weight2 := NewWeight(1000, GRAM)
 

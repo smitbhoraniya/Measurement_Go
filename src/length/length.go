@@ -10,9 +10,7 @@ func NewLength(value float64, unit LengthUnit) Length {
 }
 
 func (l Length) convertToTargetUnit(targetUnit LengthUnit) Length {
-	var convertToMeter float64 = l.value * l.unit.getConversionFactor()
-
-	var convertToTarget float64 = convertToMeter / targetUnit.getConversionFactor()
+	var convertToTarget float64 = l.value * l.unit.getConversionFactor() / targetUnit.getConversionFactor()
 
 	return Length{value: convertToTarget, unit: targetUnit}
 }

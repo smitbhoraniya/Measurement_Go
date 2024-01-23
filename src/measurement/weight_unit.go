@@ -1,4 +1,4 @@
-package weight
+package measurement
 
 type WeightUnit string
 
