@@ -9,14 +9,16 @@ type Measurement[T interface{ Unit }] struct {
 	unit  T
 }
 
-// func NewMeasurement[T interface{ Unit }](value float64, unit T) Measurement[T] {
-// 	return Measurement[T]{value: value, unit: unit}
-// }
-
 func (l Measurement[T]) convertToTargetUnit(targetUnit T) Measurement[T] {
 	var convertToTarget float64 = l.value * l.unit.getConversionFactor() / targetUnit.getConversionFactor()
 
 	return Measurement[T]{value: convertToTarget, unit: targetUnit}
+}
+
+func (l Measurement[T]) compare(other Measurement[T]) bool {
+	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(l.unit)
+
+	return l.value == otherMeasurementInSameUnit.value
 }
 
 func (l Measurement[T]) add(other Measurement[T]) Measurement[T] {

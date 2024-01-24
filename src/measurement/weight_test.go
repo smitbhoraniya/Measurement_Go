@@ -13,6 +13,15 @@ func TestCompareTwoWeights(t *testing.T) {
 	}
 }
 
+func TestCompareTwoWeights2(t *testing.T) {
+	weight1 := NewWeight(1, KILOGRAM)
+	weight2 := NewWeight(1000, GRAM)
+
+	if !weight1.compare(weight2) {
+		t.Fatalf("Weight are not equals.")
+	}
+}
+
 func TestConvertWeightToTargetUnit(t *testing.T) {
 	weight1 := NewWeight(1, KILOGRAM).convertToTargetUnit(GRAM)
 	weight2 := NewWeight(1000, GRAM)

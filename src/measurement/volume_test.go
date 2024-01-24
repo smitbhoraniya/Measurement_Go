@@ -13,6 +13,15 @@ func TestCompareTwoVolumes(t *testing.T) {
 	}
 }
 
+func TestCompareTwoVolumes2(t *testing.T) {
+	volume1 := NewVolume(1, LITER)
+	volume2 := NewVolume(1000, MILLILITER)
+
+	if !volume1.compare(volume2) {
+		t.Fatalf("Volume are not equals.")
+	}
+}
+
 func TestConvertVolumeToTargetUnit(t *testing.T) {
 	volume1 := NewVolume(1, LITER).convertToTargetUnit(MILLILITER)
 	volume2 := NewVolume(1000, MILLILITER)

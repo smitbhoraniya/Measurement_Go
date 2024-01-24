@@ -13,6 +13,15 @@ func TestCompareTwoLengths(t *testing.T) {
 	}
 }
 
+func TestCompareTwoLengths2(t *testing.T) {
+	length1 := NewLength(1, KILOMETERE)
+	length2 := NewLength(1000, METER)
+
+	if !length1.compare(length2) {
+		t.Fatalf("length are not equals.")
+	}
+}
+
 func TestConvertToTargetUnit(t *testing.T) {
 	length1 := NewLength(1, KILOMETERE).convertToTargetUnit(METER)
 	length2 := NewLength(1000, METER)
