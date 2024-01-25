@@ -9,26 +9,26 @@ type Measurement[T interface{ Unit }] struct {
 	unit  T
 }
 
-func (l Measurement[T]) convertToTargetUnit(targetUnit T) Measurement[T] {
-	var convertToTarget float64 = l.value * l.unit.getConversionFactor() / targetUnit.getConversionFactor()
+func (m Measurement[T]) convertToTargetUnit(targetUnit T) Measurement[T] {
+	var convertToTarget float64 = m.value * m.unit.getConversionFactor() / targetUnit.getConversionFactor()
 
 	return Measurement[T]{value: convertToTarget, unit: targetUnit}
 }
 
-func (l Measurement[T]) compare(other Measurement[T]) bool {
-	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(l.unit)
+func (m Measurement[T]) compare(other Measurement[T]) bool {
+	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(m.unit)
 
-	return l.value == otherMeasurementInSameUnit.value
+	return m.value == otherMeasurementInSameUnit.value
 }
 
-func (l Measurement[T]) add(other Measurement[T]) Measurement[T] {
-	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(l.unit)
+func (m Measurement[T]) add(other Measurement[T]) Measurement[T] {
+	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(m.unit)
 
-	return Measurement[T]{value: l.value + otherMeasurementInSameUnit.value, unit: l.unit}
+	return Measurement[T]{value: m.value + otherMeasurementInSameUnit.value, unit: m.unit}
 }
 
-func (l Measurement[T]) subtract(other Measurement[T]) Measurement[T] {
-	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(l.unit)
+func (m Measurement[T]) subtract(other Measurement[T]) Measurement[T] {
+	var otherMeasurementInSameUnit Measurement[T] = other.convertToTargetUnit(m.unit)
 
-	return Measurement[T]{value: l.value - otherMeasurementInSameUnit.value, unit: l.unit}
+	return Measurement[T]{value: m.value - otherMeasurementInSameUnit.value, unit: m.unit}
 }
